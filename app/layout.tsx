@@ -1,12 +1,12 @@
 "use client";
 
+import { AppSidebar } from "@/components/app-sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
+import { TopBar } from "@/components/top-bar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import TranslationProvider from "@/TranslationProvider";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { SidebarProvider } from "@/components/ui/sidebar";
-import { SidebarInset } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
-import { TopBar } from "@/components/top-bar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang='en' suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
@@ -24,6 +24,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+           <TranslationProvider>
+
           <SidebarProvider>
             <AppSidebar />
             <SidebarInset>
@@ -32,6 +34,7 @@ export default function RootLayout({
               <div className="flex-1 overflow-y-auto mt-16">{children}</div>
             </SidebarInset>
           </SidebarProvider>
+           </TranslationProvider>
         </ThemeProvider>
       </body>
     </html>

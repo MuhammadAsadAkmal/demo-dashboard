@@ -1,8 +1,7 @@
 "use client"
 
-import { Bell, Search, User, Settings } from "lucide-react"
-import { Input } from "@/components/ui/input"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,6 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Input } from "@/components/ui/input"
 import {
   Sheet,
   SheetContent,
@@ -19,8 +19,9 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { Button } from "@/components/ui/button"
-import { useState } from "react"
+import { Bell, Settings, User } from "lucide-react"
+import { useEffect, useState } from "react"
+import { LanguageSwitcher } from "./language-celector"
 
 interface Notification {
   id: number
@@ -49,10 +50,34 @@ const notifications: Notification[] = [
 ]
 
 export function TopBar() {
-  const [unreadCount, setUnreadCount] = useState(2)
+  const [unreadCount] = useState(2)
+  const [direction, setDirection] = useState<string>(
+    typeof window !== 'undefined' ? document.documentElement.dir : 'ltr'
+  );
+
+  useEffect(() => {
+    // Listen for changes to the `dir` attribute on the <html> tag
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'dir') {
+          setDirection(document.documentElement.dir);
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div className="flex h-16 items-center border-b px-4 md:px-6 fixed top-0 left-0 md:left-64 right-0 bg-background z-10">
+    <div
+    className={`flex h-16 items-center border-b px-4 md:px-6 fixed top-0 ${
+      direction === 'rtl' ? 'right-0 md:right-64 left-0' : 'left-0 md:left-64 right-0'
+    } bg-background z-10`}
+  >
       <div className="flex flex-1 items-center space-x-4">
         <div className="relative w-full max-w-[600px]">
           {/* <Search className="  absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground " /> */}
@@ -103,6 +128,7 @@ export function TopBar() {
           </SheetContent>
         </Sheet>
         <ThemeToggle />
+        <LanguageSwitcher />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="icon">

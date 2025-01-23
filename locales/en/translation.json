@@ -1,0 +1,17 @@
+{
+    "dashboard": {
+      "totalRevenue": "Total Revenue",
+      "subscriptions": "Subscriptions",
+      "sales": "Sales",
+      "activeNow": "Active Now",
+      "totalRevenueValue": "$45,231.89",
+      "subscriptionsValue": "+2350",
+      "salesValue": "+12,234",
+      "activeNowValue": "+573",
+      "revenueGrowth": "+20.1% from last month",
+      "subscriptionsGrowth": "+180.1% from last month",
+      "salesGrowth": "+19% from last month",
+      "activeNowGrowth": "+201 since last hour"
+    }
+  }
+  
