@@ -1,20 +1,19 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Line } from "react-chartjs-2"
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  Chart as ChartJS,
   CategoryScale,
+  Chart as ChartJS,
+  Legend,
   LinearScale,
-  PointElement,
   LineElement,
+  PointElement,
   Title,
   Tooltip,
-  Legend,
-} from "chart.js"
-import { PieChartMain } from "./piechart"
-import { BarComponent } from "./barchart"
-import { AreaComponent } from "./areachart"
+} from "chart.js";
+import { BarComponent } from "./barchart";
+import { ChartComponent } from "./chart3";
+import { PieChartMain } from "./piechart";
 
 ChartJS.register(
   CategoryScale,
@@ -24,35 +23,22 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend
-)
+);
 
 export function DashboardChart() {
-  const data = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-    datasets: [
-      {
-        label: "Revenue",
-        data: [30, 40, 35, 50, 49, 60],
-        borderColor: "rgb(75, 192, 192)",
-        tension: 0.1,
-      },
-    ],
-  }
-
   return (
-    <Card className="col-span-3">
+    <Card className="col-span-3 bg-none" >
       <CardHeader>
         <CardTitle>Revenue Overview</CardTitle>
       </CardHeader>
-      
-        {/* <Line data={data} /> */}
-        <AreaComponent/>
-        <div className="flex flex-wrap justify-evenly py-4">
 
-        <BarComponent/>
-        <PieChartMain/>
-        </div>
-    
+      <div className="flex flex-wrap justify-evenly py-4">
+        <BarComponent />
+        <ChartComponent />
+        <PieChartMain />
+      </div>
+  
+      {/* <Line data={data} /> */}
     </Card>
-  )
-} 
+  );
+}

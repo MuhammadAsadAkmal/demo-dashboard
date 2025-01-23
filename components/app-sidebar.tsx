@@ -94,7 +94,7 @@ export function AppSidebar() {
           </Button>
         </SheetTrigger>
         <SheetContent side="left" className="w-[300px] p-0">
-          <SheetHeader className="p-4 border-b">
+          <SheetHeader className="p-5 border-b">
             <SheetTitle>Dashboard</SheetTitle>
           </SheetHeader>
           <nav className="flex flex-col gap-2 p-4">
@@ -105,7 +105,7 @@ export function AppSidebar() {
 
       {/* Desktop Sidebar */}
       <div className="hidden md:flex flex-col w-64 border-r bg-background">
-        <div className="p-4 border-b">
+        <div className="p-5 border-b">
           <h2 className="font-semibold">Dashboard</h2>
         </div>
         <nav className="flex-1 overflow-auto py-4">

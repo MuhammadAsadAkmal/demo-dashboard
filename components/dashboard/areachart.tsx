@@ -39,14 +39,14 @@ const chartConfig = {
 
 export function AreaComponent() {
   return (
-    <Card>
+    <Card >
       <CardHeader>
         <CardTitle>Area Chart - Stacked</CardTitle>
         <CardDescription>
           Showing total users for the last 6 months
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent >
         <ChartContainer config={chartConfig}>
           <AreaChart
             accessibilityLayer
