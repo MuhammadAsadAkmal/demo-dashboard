@@ -26,6 +26,19 @@
       "orders": "الطلبات",
       "analytics": "التحليلات",
       "settings": "الإعدادات"
+    },
+    "search": {
+      "placeholder": "بحث..."
+    },
+    "notifications": {
+      "title": "الإشعارات",
+      "description": "لديك {{count}} إشعار غير مقروء"
+    },
+    "account": {
+      "my_account": "حسابي",
+      "profile": "الملف الشخصي",
+      "settings": "الإعدادات",
+      "logout": "تسجيل الخروج"
     }
   }
   

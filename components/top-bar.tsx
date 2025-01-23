@@ -22,6 +22,7 @@ import {
 import { Bell, Settings, User } from "lucide-react"
 import { useEffect, useState } from "react"
 import { LanguageSwitcher } from "./language-celector"
+import { useTranslation } from "next-i18next"
 
 interface Notification {
   id: number
@@ -50,40 +51,35 @@ const notifications: Notification[] = [
 ]
 
 export function TopBar() {
+  const { t } = useTranslation()  // Use the t function for translations
   const [unreadCount] = useState(2)
-  const [direction, setDirection] = useState<string>(
-    typeof window !== 'undefined' ? document.documentElement.dir : 'ltr'
-  );
+  const [direction, setDirection] = useState<string>(typeof window !== 'undefined' ? document.documentElement.dir : 'ltr')
 
   useEffect(() => {
-    // Listen for changes to the `dir` attribute on the <html> tag
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.attributeName === 'dir') {
-          setDirection(document.documentElement.dir);
+          setDirection(document.documentElement.dir)
         }
-      });
-    });
+      })
+    })
 
     observer.observe(document.documentElement, {
       attributes: true,
-    });
+    })
 
-    return () => observer.disconnect();
-  }, []);
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <div
-    className={`flex h-16 items-center border-b px-4 md:px-6 fixed top-0 ${
-      direction === 'rtl' ? 'right-0 md:right-64 left-0' : 'left-0 md:left-64 right-0'
-    } bg-background z-10`}
-  >
+      className={`flex h-16 items-center border-b px-4 md:px-6 fixed top-0 ${direction === 'rtl' ? 'right-0 md:right-64 left-0' : 'left-0 md:left-64 right-0'} bg-background z-10`}
+    >
       <div className="flex flex-1 items-center space-x-4">
         <div className="relative w-full max-w-[600px]">
-          {/* <Search className="  absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground " /> */}
           <Input
             type="search"
-            placeholder="Search..."
+            placeholder={t("search.placeholder")}  // Use translation for placeholder
             className="w-full bg-background pl-8 md:w-[300px] lg:w-[600px]"
           />
         </div>
@@ -102,22 +98,18 @@ export function TopBar() {
           </SheetTrigger>
           <SheetContent>
             <SheetHeader>
-              <SheetTitle>Notifications</SheetTitle>
-              <SheetDescription>You have {unreadCount} unread notifications</SheetDescription>
+              <SheetTitle>{t("notifications.title")}</SheetTitle>  {/* Use translation for title */}
+              <SheetDescription>{t("notifications.description", { count: unreadCount })}</SheetDescription>  {/* Use translation for description */}
             </SheetHeader>
             <div className="mt-4 space-y-4">
               {notifications.map((notification) => (
                 <div
                   key={notification.id}
-                  className={`rounded-lg border p-4 ${
-                    !notification.read ? "bg-muted" : ""
-                  }`}
+                  className={`rounded-lg border p-4 ${!notification.read ? "bg-muted" : ""}`}
                 >
                   <div className="flex items-center justify-between">
                     <h4 className="text-sm font-semibold">{notification.title}</h4>
-                    <span className="text-xs text-muted-foreground">
-                      {notification.time}
-                    </span>
+                    <span className="text-xs text-muted-foreground">{notification.time}</span>
                   </div>
                   <p className="mt-1 text-sm text-muted-foreground">
                     {notification.description}
@@ -136,23 +128,23 @@ export function TopBar() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuLabel>{t("account.my_account")}</DropdownMenuLabel>  {/* Use translation for account label */}
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <User className="mr-2 h-4 w-4" />
-              Profile
+              {t("account.profile")}
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Settings className="mr-2 h-4 w-4" />
-              Settings
+              {t("account.settings")}
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="text-red-600">
-              Log out
+              {t("account.logout")}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
     </div>
   )
-} 
+}

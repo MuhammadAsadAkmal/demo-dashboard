@@ -26,6 +26,19 @@
       "orders": "Orders",
       "analytics": "Analytics",
       "settings": "Settings"
+    },
+    "search": {
+      "placeholder": "Search..."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "You have {{count}} unread notifications"
+    },
+    "account": {
+      "my_account": "My Account",
+      "profile": "Profile",
+      "settings": "Settings",
+      "logout": "Log out"
     }
   }
   
