@@ -88,7 +88,7 @@ export function AppSidebar() {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden fixed left-4 top-3 z-40"
+            className="md:hidden fixed left-2 top-2 z-40"
           >
             <Menu className="h-5 w-5" />
           </Button>
