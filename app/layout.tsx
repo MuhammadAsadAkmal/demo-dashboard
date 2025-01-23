@@ -6,10 +6,9 @@ import "./globals.css";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
+import { TopBar } from "@/components/top-bar";
 
 const inter = Inter({ subsets: ["latin"] });
-
-
 
 export default function RootLayout({
   children,
@@ -30,7 +29,7 @@ export default function RootLayout({
               <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
-
+        <TopBar />
           {children}
       </SidebarInset>
       </SidebarProvider>

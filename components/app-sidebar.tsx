@@ -3,13 +3,6 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
 import {
   LayoutDashboard,
   Users,
@@ -17,17 +10,31 @@ import {
   ShoppingCart,
   Box,
   BarChart3,
+  ChevronDown,
+  Menu,
 } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible"
 
-interface SideNavItem {
+interface NavItem {
   title: string
   href: string
-  icon?: React.ComponentType<{ className?: string }>
-  submenu?: boolean
-  subMenuItems?: { title: string; href: string }[]
+  icon: React.ComponentType<{ className?: string }>
+  children?: { title: string; href: string }[]
 }
 
-const sidebarNavItems: SideNavItem[] = [
+const navItems: NavItem[] = [
   {
     title: "Dashboard",
     href: "/dashboard",
@@ -37,40 +44,20 @@ const sidebarNavItems: SideNavItem[] = [
     title: "Users",
     href: "/users",
     icon: Users,
-    submenu: true,
-    subMenuItems: [
-      {
-        title: "All Users",
-        href: "/users",
-      },
-      {
-        title: "Add User",
-        href: "/users/add",
-      },
-      {
-        title: "Roles",
-        href: "/users/roles",
-      },
+    children: [
+      { title: "All Users", href: "/users" },
+      { title: "Add User", href: "/users/add" },
+      { title: "Roles", href: "/users/roles" },
     ],
   },
   {
     title: "Products",
     href: "/products",
     icon: Box,
-    submenu: true,
-    subMenuItems: [
-      {
-        title: "All Products",
-        href: "/products",
-      },
-      {
-        title: "Add Product",
-        href: "/products/add",
-      },
-      {
-        title: "Categories",
-        href: "/products/categories",
-      },
+    children: [
+      { title: "All Products", href: "/products" },
+      { title: "Add Product", href: "/products/add" },
+      { title: "Categories", href: "/products/categories" },
     ],
   },
   {
@@ -94,61 +81,108 @@ export function AppSidebar() {
   const pathname = usePathname()
 
   return (
-    <div className="flex h-screen w-64 flex-col border-r bg-background">
-      <div className="flex h-14 items-center border-b px-4">
-        <span className="font-semibold">Admin Dashboard</span>
-      </div>
-      <div className="flex-1 overflow-auto py-2">
-        <nav className="grid items-start px-4 text-sm font-medium">
-          {sidebarNavItems.map((item, index) => {
-            const Icon = item.icon
-            return item.submenu ? (
-              <Accordion
-                key={index}
-                type="single"
-                collapsible
-                className="w-full"
-              >
-                <AccordionItem value={item.title} className="border-none">
-                  <AccordionTrigger className="flex items-center gap-x-2 p-2 hover:bg-accent hover:text-accent-foreground rounded-md">
-                    {Icon && <Icon className="h-4 w-4" />}
-                    {item.title}
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <div className="flex flex-col space-y-1 pl-6">
-                      {item.subMenuItems?.map((subItem, subIndex) => (
-                        <Link
-                          key={subIndex}
-                          href={subItem.href}
-                          className={cn(
-                            "flex items-center gap-x-2 rounded-md p-2 text-slate-600 hover:bg-accent hover:text-accent-foreground",
-                            pathname === subItem.href &&
-                              "bg-accent text-accent-foreground"
-                          )}
-                        >
-                          {subItem.title}
-                        </Link>
-                      ))}
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            ) : (
-              <Link
-                key={index}
-                href={item.href}
-                className={cn(
-                  "flex items-center gap-x-2 rounded-md p-2 hover:bg-accent hover:text-accent-foreground",
-                  pathname === item.href && "bg-accent text-accent-foreground"
-                )}
-              >
-                {Icon && <Icon className="h-4 w-4" />}
-                {item.title}
-              </Link>
-            )
-          })}
+    <>
+      {/* Mobile Sidebar */}
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden fixed left-4 top-3 z-40"
+          >
+            <Menu className="h-5 w-5" />
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="left" className="w-[300px] p-0">
+          <SheetHeader className="p-4 border-b">
+            <SheetTitle>Dashboard</SheetTitle>
+          </SheetHeader>
+          <nav className="flex flex-col gap-2 p-4">
+            <NavigationItems items={navItems} pathname={pathname} />
+          </nav>
+        </SheetContent>
+      </Sheet>
+
+      {/* Desktop Sidebar */}
+      <div className="hidden md:flex flex-col w-64 border-r bg-background">
+        <div className="p-4 border-b">
+          <h2 className="font-semibold">Dashboard</h2>
+        </div>
+        <nav className="flex-1 overflow-auto py-4">
+          <NavigationItems items={navItems} pathname={pathname} />
         </nav>
       </div>
+    </>
+  )
+}
+
+function NavigationItems({ 
+  items, 
+  pathname 
+}: { 
+  items: NavItem[]
+  pathname: string 
+}) {
+  return (
+    <div className="space-y-2">
+      {items.map((item, index) => {
+        const Icon = item.icon
+        const isActive = pathname === item.href
+        const isActiveGroup = item.children?.some(
+          (child) => child.href === pathname
+        )
+
+        if (item.children) {
+          return (
+            <Collapsible key={index} defaultOpen={isActiveGroup}>
+              <CollapsibleTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className={cn(
+                    "w-full justify-between",
+                    (isActive || isActiveGroup) && "bg-accent"
+                  )}
+                >
+                  <span className="flex items-center">
+                    <Icon className="mr-2 h-4 w-4" />
+                    {item.title}
+                  </span>
+                  <ChevronDown className="h-4 w-4" />
+                </Button>
+              </CollapsibleTrigger>
+              <CollapsibleContent className="pl-6 mt-1 space-y-1">
+                {item.children.map((child, childIndex) => (
+                  <Link
+                    key={childIndex}
+                    href={child.href}
+                    className={cn(
+                      "flex items-center py-2 px-3 text-sm rounded-md hover:bg-accent",
+                      pathname === child.href && "bg-accent text-accent-foreground"
+                    )}
+                  >
+                    {child.title}
+                  </Link>
+                ))}
+              </CollapsibleContent>
+            </Collapsible>
+          )
+        }
+
+        return (
+          <Link key={index} href={item.href}>
+            <Button
+              variant="ghost"
+              className={cn(
+                "w-full justify-start",
+                isActive && "bg-accent"
+              )}
+            >
+              <Icon className="mr-2 h-4 w-4" />
+              {item.title}
+            </Button>
+          </Link>
+        )
+      })}
     </div>
   )
 }
