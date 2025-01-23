@@ -39,6 +39,28 @@
       "profile": "Profile",
       "settings": "Settings",
       "logout": "Log out"
+    },
+    "websiteTrafficOverview": "Website Traffic Overview",
+    "comparingDesktopMobile": "Comparing Desktop and Mobile traffic from January to June 2024",
+    "trafficIncrease": "Traffic has increased by 5.2% this month",
+    "totalVisitorsLast6Months": "Data represents total website visitors over the past 6 months.",
+    "pieChart": {
+      "title": "Pie Chart",
+      "description": "January - June 2024",
+      "selectMonth": "Select month"
+    },
+    "pieChart2": {
+      "title": "Pie Chart - Donut with Text",
+      "description": "January - June 2024",
+      "visitorsLabel": "Visitors",
+      "trendingUp": "Trending up by 5.2% this month",
+      "totalVisitorsFooter": "Showing total visitors for the last 6 months"
+    },
+    "charts": {
+      "areaChartTitle": "Area Chart - Stacked",
+      "areaChartDescription": "Showing total users for the last 6 months",
+      "trendingUp": "Trending up by 5.2% this month",
+      "januaryJune2024": "January - June 2024"
     }
   }
   
