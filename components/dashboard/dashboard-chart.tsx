@@ -12,6 +12,9 @@ import {
   Tooltip,
   Legend,
 } from "chart.js"
+import { PieChartMain } from "./piechart"
+import { BarComponent } from "./barchart"
+import { AreaComponent } from "./areachart"
 
 ChartJS.register(
   CategoryScale,
@@ -41,9 +44,15 @@ export function DashboardChart() {
       <CardHeader>
         <CardTitle>Revenue Overview</CardTitle>
       </CardHeader>
-      <CardContent>
-        <Line data={data} />
-      </CardContent>
+      
+        {/* <Line data={data} /> */}
+        <AreaComponent/>
+        <div className="flex flex-wrap justify-evenly py-4">
+
+        <BarComponent/>
+        <PieChartMain/>
+        </div>
+    
     </Card>
   )
 } 
