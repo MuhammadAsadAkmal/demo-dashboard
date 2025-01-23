@@ -12,6 +12,20 @@
       "subscriptionsGrowth": "+180.1% من الشهر الماضي",
       "salesGrowth": "+19% من الشهر الماضي",
       "activeNowGrowth": "+201 منذ الساعة الماضية"
+    },
+    "sidebar": {
+      "dashboard": "لوحة التحكم",
+      "users": "المستخدمين",
+      "users.all": "جميع المستخدمين",
+      "users.add": "إضافة مستخدم",
+      "users.roles": "الأدوار",
+      "products": "المنتجات",
+      "products.all": "جميع المنتجات",
+      "products.add": "إضافة منتج",
+      "products.categories": "الفئات",
+      "orders": "الطلبات",
+      "analytics": "التحليلات",
+      "settings": "الإعدادات"
     }
   }
   

@@ -12,6 +12,20 @@
       "subscriptionsGrowth": "+180.1% from last month",
       "salesGrowth": "+19% from last month",
       "activeNowGrowth": "+201 since last hour"
+    },
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "users": "Users",
+      "users.all": "All Users",
+      "users.add": "Add User",
+      "users.roles": "Roles",
+      "products": "Products",
+      "products.all": "All Products",
+      "products.add": "Add Product",
+      "products.categories": "Categories",
+      "orders": "Orders",
+      "analytics": "Analytics",
+      "settings": "Settings"
     }
   }
   
