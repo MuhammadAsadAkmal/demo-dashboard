@@ -104,7 +104,7 @@ export function AppSidebar() {
       </Sheet>
 
       {/* Desktop Sidebar */}
-      <div className="hidden md:flex flex-col w-64 border-r bg-background">
+      <div className="hidden md:flex flex-col w-64 border-r bg-background ">
         <div className="p-5 border-b">
           <h2 className="font-semibold">Dashboard</h2>
         </div>

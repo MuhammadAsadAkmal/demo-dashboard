@@ -52,7 +52,7 @@ export function TopBar() {
   const [unreadCount, setUnreadCount] = useState(2)
 
   return (
-    <div className="flex h-16 items-center border-b px-4 md:px-6">
+    <div className="flex h-16 items-center border-b px-4 md:px-6 fixed top-0 left-0 md:left-64 right-0 bg-background z-10">
       <div className="flex flex-1 items-center space-x-4">
         <div className="relative w-full max-w-[600px]">
           {/* <Search className="  absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground " /> */}

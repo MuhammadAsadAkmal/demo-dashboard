@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { Inter } from "next/font/google";
@@ -13,26 +13,25 @@ const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      
       <body className={inter.className}>
-
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-              <SidebarProvider>
-      <AppSidebar />
-      <SidebarInset>
-        <TopBar />
-          {children}
-      </SidebarInset>
-      </SidebarProvider>
+          <SidebarProvider>
+            <AppSidebar />
+            <SidebarInset>
+             {/* Content Area */}
+              <TopBar />
+              <div className="flex-1 overflow-y-auto mt-16">{children}</div>
+            </SidebarInset>
+          </SidebarProvider>
         </ThemeProvider>
       </body>
     </html>
