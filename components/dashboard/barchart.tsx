@@ -2,6 +2,7 @@
 
 import { TrendingUp } from "lucide-react"
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { useTranslation } from "react-i18next" // Import translation hook
 
 import {
   Card,
@@ -29,21 +30,23 @@ const chartData = [
 
 const chartConfig = {
   desktop: {
-    label: "Desktop",
+    label: "Desktop Visitors",
     color: "hsl(var(--chart-1))",
   },
   mobile: {
-    label: "Mobile",
+    label: "Mobile Visitors",
     color: "hsl(var(--chart-2))",
   },
 } satisfies ChartConfig
 
 export function BarComponent() {
+  const { t } = useTranslation() // Initialize translation hook
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Bar Chart - Multiple</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardTitle>{t('websiteTrafficOverview')}</CardTitle>
+        <CardDescription>{t('comparingDesktopMobile')}</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -67,10 +70,10 @@ export function BarComponent() {
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="flex gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+          {t('trafficIncrease')} <TrendingUp className="h-4 w-4" />
         </div>
         <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+          {t('totalVisitorsLast6Months')}
         </div>
       </CardFooter>
     </Card>

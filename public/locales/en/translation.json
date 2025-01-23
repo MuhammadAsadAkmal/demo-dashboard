@@ -1,0 +1,66 @@
+{
+    "dashboard": {
+      "totalRevenue": "Total Revenue",
+      "subscriptions": "Subscriptions",
+      "sales": "Sales",
+      "activeNow": "Active Now",
+      "totalRevenueValue": "$45,231.89",
+      "subscriptionsValue": "+2350",
+      "salesValue": "+12,234",
+      "activeNowValue": "+573",
+      "revenueGrowth": "+20.1% from last month",
+      "subscriptionsGrowth": "+180.1% from last month",
+      "salesGrowth": "+19% from last month",
+      "activeNowGrowth": "+201 since last hour"
+    },
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "users": "Users",
+      "users.all": "All Users",
+      "users.add": "Add User",
+      "users.roles": "Roles",
+      "products": "Products",
+      "products.all": "All Products",
+      "products.add": "Add Product",
+      "products.categories": "Categories",
+      "orders": "Orders",
+      "analytics": "Analytics",
+      "settings": "Settings"
+    },
+    "search": {
+      "placeholder": "Search..."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "You have {{count}} unread notifications"
+    },
+    "account": {
+      "my_account": "My Account",
+      "profile": "Profile",
+      "settings": "Settings",
+      "logout": "Log out"
+    },
+    "websiteTrafficOverview": "Website Traffic Overview",
+    "comparingDesktopMobile": "Comparing Desktop and Mobile traffic from January to June 2024",
+    "trafficIncrease": "Traffic has increased by 5.2% this month",
+    "totalVisitorsLast6Months": "Data represents total website visitors over the past 6 months.",
+    "pieChart": {
+      "title": "Pie Chart",
+      "description": "January - June 2024",
+      "selectMonth": "Select month"
+    },
+    "pieChart2": {
+      "title": "Pie Chart - Donut with Text",
+      "description": "January - June 2024",
+      "visitorsLabel": "Visitors",
+      "trendingUp": "Trending up by 5.2% this month",
+      "totalVisitorsFooter": "Showing total visitors for the last 6 months"
+    },
+    "charts": {
+      "areaChartTitle": "Area Chart - Stacked",
+      "areaChartDescription": "Showing total users for the last 6 months",
+      "trendingUp": "Trending up by 5.2% this month",
+      "januaryJune2024": "January - June 2024"
+    }
+  }
+  

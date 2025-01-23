@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { cn } from "@/lib/utils"
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
   Users,
@@ -12,73 +12,75 @@ import {
   BarChart3,
   ChevronDown,
   Menu,
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
+} from "@/components/ui/sheet";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible"
+} from "@/components/ui/collapsible";
+import { useTranslation } from "react-i18next"; // Import i18n hook
 
 interface NavItem {
-  title: string
-  href: string
-  icon: React.ComponentType<{ className?: string }>
-  children?: { title: string; href: string }[]
+  title: string;
+  href: string;
+  icon: React.ComponentType<{ className?: string }>;
+  children?: { title: string; href: string }[];
 }
 
-const navItems: NavItem[] = [
-  {
-    title: "Dashboard",
-    href: "/dashboard",
-    icon: LayoutDashboard,
-  },
-  {
-    title: "Users",
-    href: "/users",
-    icon: Users,
-    children: [
-      { title: "All Users", href: "/users" },
-      { title: "Add User", href: "/users/add" },
-      { title: "Roles", href: "/users/roles" },
-    ],
-  },
-  {
-    title: "Products",
-    href: "/products",
-    icon: Box,
-    children: [
-      { title: "All Products", href: "/products" },
-      { title: "Add Product", href: "/products/add" },
-      { title: "Categories", href: "/products/categories" },
-    ],
-  },
-  {
-    title: "Orders",
-    href: "/orders",
-    icon: ShoppingCart,
-  },
-  {
-    title: "Analytics",
-    href: "/analytics",
-    icon: BarChart3,
-  },
-  {
-    title: "Settings",
-    href: "/settings",
-    icon: Settings,
-  },
-]
-
 export function AppSidebar() {
-  const pathname = usePathname()
+  const pathname = usePathname();
+  const { t } = useTranslation(); // Get the t function for translations
+
+  const navItems: NavItem[] = [
+    {
+      title: t("sidebar.dashboard"), // Use translations
+      href: "/dashboard",
+      icon: LayoutDashboard,
+    },
+    {
+      title: t("sidebar.users"),
+      href: "/users",
+      icon: Users,
+      children: [
+        { title: t("sidebar.users.all"), href: "/users" },
+        { title: t("sidebar.users.add"), href: "/users/add" },
+        { title: t("sidebar.users.roles"), href: "/users/roles" },
+      ],
+    },
+    {
+      title: t("sidebar.products"),
+      href: "/products",
+      icon: Box,
+      children: [
+        { title: t("sidebar.products.all"), href: "/products" },
+        { title: t("sidebar.products.add"), href: "/products/add" },
+        { title: t("sidebar.products.categories"), href: "/products/categories" },
+      ],
+    },
+    {
+      title: t("sidebar.orders"),
+      href: "/orders",
+      icon: ShoppingCart,
+    },
+    {
+      title: t("sidebar.analytics"),
+      href: "/analytics",
+      icon: BarChart3,
+    },
+    {
+      title: t("sidebar.settings"),
+      href: "/settings",
+      icon: Settings,
+    },
+  ];
 
   return (
     <>
@@ -95,7 +97,7 @@ export function AppSidebar() {
         </SheetTrigger>
         <SheetContent side="left" className="w-[300px] p-0">
           <SheetHeader className="p-5 border-b">
-            <SheetTitle>Dashboard</SheetTitle>
+            <SheetTitle>{t("sidebar.dashboard")}</SheetTitle>
           </SheetHeader>
           <nav className="flex flex-col gap-2 p-4">
             <NavigationItems items={navItems} pathname={pathname} />
@@ -104,33 +106,33 @@ export function AppSidebar() {
       </Sheet>
 
       {/* Desktop Sidebar */}
-      <div className="hidden md:flex flex-col w-64 border-r bg-background ">
+      <div className="hidden md:flex flex-col w-64 border-r bg-background">
         <div className="p-5 border-b">
-          <h2 className="font-semibold">Dashboard</h2>
+          <h2 className="font-semibold">{t("sidebar.dashboard")}</h2>
         </div>
         <nav className="flex-1 overflow-auto py-4">
           <NavigationItems items={navItems} pathname={pathname} />
         </nav>
       </div>
     </>
-  )
+  );
 }
 
-function NavigationItems({ 
-  items, 
-  pathname 
-}: { 
-  items: NavItem[]
-  pathname: string 
+function NavigationItems({
+  items,
+  pathname,
+}: {
+  items: NavItem[];
+  pathname: string;
 }) {
   return (
     <div className="space-y-2">
       {items.map((item, index) => {
-        const Icon = item.icon
-        const isActive = pathname === item.href
+        const Icon = item.icon;
+        const isActive = pathname === item.href;
         const isActiveGroup = item.children?.some(
           (child) => child.href === pathname
-        )
+        );
 
         if (item.children) {
           return (
@@ -165,7 +167,7 @@ function NavigationItems({
                 ))}
               </CollapsibleContent>
             </Collapsible>
-          )
+          );
         }
 
         return (
@@ -181,8 +183,8 @@ function NavigationItems({
               {item.title}
             </Button>
           </Link>
-        )
+        );
       })}
     </div>
-  )
+  );
 }

@@ -32,6 +32,7 @@ const desktopData = [
   { month: "april", desktop: 173, fill: "var(--color-april)" },
   { month: "may", desktop: 209, fill: "var(--color-may)" },
 ]
+import { useTranslation } from "react-i18next" 
 
 const chartConfig = {
   visitors: {
@@ -67,6 +68,7 @@ const chartConfig = {
 
 export function ChartComponent() {
   const id = "pie-interactive"
+  const {t} = useTranslation()
   const [activeMonth, setActiveMonth] = React.useState(desktopData[0].month)
 
   const activeIndex = React.useMemo(
@@ -80,15 +82,15 @@ export function ChartComponent() {
       <ChartStyle id={id} config={chartConfig} />
       <CardHeader className="flex-row items-start space-y-0 pb-0">
         <div className="grid gap-1">
-          <CardTitle>Pie Chart</CardTitle>
-          <CardDescription>January - June 2024</CardDescription>
+          <CardTitle>{t("pieChart.title")}</CardTitle>
+          <CardDescription>{t("pieChart.description")}</CardDescription>
         </div>
         <Select value={activeMonth} onValueChange={setActiveMonth}>
           <SelectTrigger
             className="ml-auto h-7 w-[130px] rounded-lg pl-2.5"
-            aria-label="Select a value"
+            aria-label={t("pieChart.selectMonth")}
           >
-            <SelectValue placeholder="Select month" />
+            <SelectValue placeholder={t("pieChart.selectMonth")} />
           </SelectTrigger>
           <SelectContent align="end" className="rounded-xl">
             {months.map((key) => {

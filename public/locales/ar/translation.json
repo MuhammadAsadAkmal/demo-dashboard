@@ -1,0 +1,68 @@
+{
+    "dashboard": {
+      "totalRevenue": "إجمالي الإيرادات",
+      "subscriptions": "الاشتراكات",
+      "sales": "المبيعات",
+      "activeNow": "النشط الآن",
+      "totalRevenueValue": "$45,231.89",
+      "subscriptionsValue": "+2350",
+      "salesValue": "+12,234",
+      "activeNowValue": "+573",
+      "revenueGrowth": "+20.1% من الشهر الماضي",
+      "subscriptionsGrowth": "+180.1% من الشهر الماضي",
+      "salesGrowth": "+19% من الشهر الماضي",
+      "activeNowGrowth": "+201 منذ الساعة الماضية"
+    },
+    "sidebar": {
+      "dashboard": "لوحة التحكم",
+      "users": "المستخدمين",
+      "users.all": "جميع المستخدمين",
+      "users.add": "إضافة مستخدم",
+      "users.roles": "الأدوار",
+      "products": "المنتجات",
+      "products.all": "جميع المنتجات",
+      "products.add": "إضافة منتج",
+      "products.categories": "الفئات",
+      "orders": "الطلبات",
+      "analytics": "التحليلات",
+      "settings": "الإعدادات"
+    },
+    "search": {
+      "placeholder": "بحث..."
+    },
+    "notifications": {
+      "title": "الإشعارات",
+      "description": "لديك {{count}} إشعار غير مقروء"
+    },
+    "account": {
+      "my_account": "حسابي",
+      "profile": "الملف الشخصي",
+      "settings": "الإعدادات",
+      "logout": "تسجيل الخروج"
+    },
+    
+      "websiteTrafficOverview": "نظرة عامة على حركة المرور على الموقع",
+      "comparingDesktopMobile": "مقارنة بين حركة المرور على سطح المكتب والجوال من يناير إلى يونيو 2024",
+      "trafficIncrease": "زيادة في حركة المرور بنسبة 5.2٪ هذا الشهر",
+      "totalVisitorsLast6Months": "البيانات تمثل إجمالي زوار الموقع على مدار الستة أشهر الماضية.",
+      "pieChart": {
+        "title": "رسم بياني دائري",
+        "description": "يناير - يونيو 2024",
+        "selectMonth": "اختر الشهر"
+      },
+      "pieChart2": {
+        "title": "رسم بياني دائري - دوار مع نص",
+        "description": "يناير - يونيو 2024",
+        "visitorsLabel": "الزوار",
+        "trendingUp": "زيادة بنسبة 5.2٪ هذا الشهر",
+        "totalVisitorsFooter": "عرض إجمالي الزوار للأشهر الستة الماضية"
+      },
+      "charts": {
+        "areaChartTitle": "مخطط المنطقة - مكدس",
+        "areaChartDescription": "عرض إجمالي المستخدمين للـ 6 أشهر الماضية",
+        "trendingUp": "زيادة بنسبة 5.2% هذا الشهر",
+        "januaryJune2024": "يناير - يونيو 2024"
+      }
+    
+  }
+  
